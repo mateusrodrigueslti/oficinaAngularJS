@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="frontEndMean">
+<head>
+    <meta charset="UTF-8">
+    <title>Oficina Angular JS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script>
+        var app = angular.module("frontEndMean", []);
+        app.controller("frontEndMeanController", function ($scope) {
+            $scope.mensagem = 'Ola mundo !';
+
+            $scope.pessoas = [];
+
+            $scope.adicionaUm = function () {
+//                var pessoaTemp = angular.copy($scope.pessoa);
+                var pessoaTemp = {
+                    nome:$scope.pessoa.nome
+                };
+
+                $scope.pessoas.push(pessoaTemp);
+            }
+        })
+
+
+    </script>
+</head>
+<body ng-controller="frontEndMeanController">
+
+<input type="text" ng-model="pessoa.nome">
+
+<button ng-click="adicionaUm()">Adiciona na lista</button>
+{{pessoa}}
+<div ng-repeat="pessoa in pessoas">
+    <p>{{pessoa.nome}}</p>
+</div>
+
+</body>
+</html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>
