@@ -3,37 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Oficina Angular JS</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script>
-        var app = angular.module("frontEndMean", []);
+        var app = angular.module("frontEndMean", ['ngMaterial']);
         app.controller("frontEndMeanController", function ($scope) {
             $scope.mensagem = 'Ola mundo !';
+            $scope.contatos = [];
 
-            $scope.pessoas = [];
-
+            $scope.dataAgora = new Date();
             $scope.adicionaUm = function () {
-//                var pessoaTemp = angular.copy($scope.pessoa);
-                var pessoaTemp = {
-                    nome:$scope.pessoa.nome
-                };
-
-                $scope.pessoas.push(pessoaTemp);
+                var pessoaTemp = angular.copy($scope.pessoa);
+                $scope.contatos.push(pessoaTemp);
+                $scope.pessoa = {};
             }
         })
 
 
     </script>
+
+    <style>
+        .vermelho{
+            background-color: red;
+        }
+    </style>
 </head>
 <body ng-controller="frontEndMeanController">
+{{dataAgota}}
+<md-input-container>
+    <label>Nome</label>
+    <input ng-model="pessoa.nome">
+</md-input-container>
 
-<input type="text" ng-model="pessoa.nome">
+<md-input-container>
+    <label>Telefone</label>
+    <input ng-model="pessoa.telefone">
+</md-input-container>
+
+<md-input-container>
+    <label>Filtro da Tabela</label>
+    <input ng-model="filtroPesquisa">
+</md-input-container>
+<input type="text" placeholder="Filtro da tabela" ng-model="filtroPesquisa">
 
 <button ng-click="adicionaUm()">Adiciona na lista</button>
-{{pessoa}}
-<div ng-repeat="pessoa in pessoas">
-    <p>{{pessoa.nome}}</p>
-</div>
 
+<md-button class="md-raised md-primary">Adicionar Contato</md-button>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+    </tr>
+    <tr ng-repeat="contato in contatos | filter: filtroPesquisa" ng-class="{vermelho: passou}" ng-mouseenter="passou = true" ng-mouseleave="passou = false">
+        <td>{{contato.nome}}</td>
+        <td>{{contato.telefone}}</td>
+    </tr>
+</table>
+{{passou}}
 </body>
 </html
 
