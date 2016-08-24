@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="frontEndMean">
+<head>
+    <meta charset="UTF-8">
+    <title>Oficina Angular JS</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script>
+        var app = angular.module("frontEndMean", ['ngMaterial']);
+        app.controller("frontEndMeanController", function ($scope, $mdSidenav) {
+            $scope.mensagem = 'Ola mundo !';
+            $scope.contatos = [];
+
+            $scope.dataAgora = new Date();
+            $scope.adicionaUm = function () {
+                var pessoaTemp = angular.copy($scope.pessoa);
+                $scope.contatos.push(pessoaTemp);
+                $scope.pessoa = {};
+            };
+
+            $scope.toggleLeft = buildToggler('left');
+
+            function buildToggler(componentId) {
+                return function() {
+                    $mdSidenav(componentId).toggle();
+                }
+            }
+        });
+    </script>
+    <style>
+        .vermelho{
+            background-color: red;
+        }
+    </style>
+</head>
+<body ng-controller="frontEndMeanController">
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+            <md-icon md-svg-icon="img/ic_dehaze_white_36px.svg"></md-icon>
+        </md-button>
+        <!--<h2>-->
+        <!--<span>Toolbar with Disabled/Enabled Icon Buttons</span>-->
+        <!--</h2>-->
+        <span flex></span>
+    </div>
+</md-toolbar>
+<md-sidenav class="md-sidenav-left" md-component-id="left">
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Menu</h1>
+    </md-toolbar>
+    <md-content layout-margin>
+        <md-list-item>Home</md-list-item>
+        <!--<md-button ng-click="toggleLeft()" class="md-accent">-->
+        <!--Close this Sidenav-->
+        <!--</md-button>-->
+    </md-content>
+</md-sidenav>
+
+<md-input-container>
+    <label>Nome</label>
+    <input ng-model="pessoa.nome">
+</md-input-container>
+
+<md-input-container>
+    <label>Telefone</label>
+    <input ng-model="pessoa.telefone">
+</md-input-container>
+
+<md-button class="md-raised md-primary">Adicionar Contato</md-button>
+<div>
+    <md-input-container>
+        <label>Filtro da Tabela</label>
+        <input ng-model="filtroPesquisa">
+    </md-input-container>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+        </tr>
+        <tr ng-repeat="contato in contatos | filter: filtroPesquisa" ng-class="{vermelho: passou}" ng-mouseenter="passou = true" ng-mouseleave="passou = false">
+            <td>{{contato.nome}}</td>
+            <td>{{contato.telefone}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

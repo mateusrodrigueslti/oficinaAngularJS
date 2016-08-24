@@ -1,0 +1,27 @@
+{
+  "name": "oficinaangular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0",
+    "angular-ui-router": "^0.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateusrodrigueslti/oficinaAngularJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mateusrodrigueslti/oficinaAngularJS/issues"
+  },
+  "homepage": "https://github.com/mateusrodrigueslti/oficinaAngularJS#readme"
+}

@@ -1,0 +1,34 @@
+<a ui-sref="agenda">vai para agenda</a>
+<md-input-container>
+    <label>Nome</label>
+    <input ng-model="pessoa.nome">
+</md-input-container>
+
+<md-input-container>
+    <label>Telefone</label>
+    <input ng-model="pessoa.telefone">
+</md-input-container>
+
+<md-input-container>
+    <label>Filtro da Tabela</label>
+    <input ng-model="filtroPesquisa">
+</md-input-container>
+<input type="text" placeholder="Filtro da tabela" ng-model="filtroPesquisa">
+
+<button ng-click="adicionaUm()">Adiciona na lista</button>
+
+<md-button class="md-raised md-primary">Adicionar Contato</md-button>
+<md-button class="md-raised md-primary" ng-click="vaiParaAgenda()">vai para agenda</md-button>
+
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+    </tr>
+    <tr ng-repeat="contato in contatos | filter: filtroPesquisa" ng-class="{vermelho: passou}" ng-mouseenter="passou = true" ng-mouseleave="passou = false">
+        <td>{{contato.nome}}</td>
+        <td>{{contato.telefone}}</td>
+        <td>{{$index}}</td>
+    </tr>
+</table>
