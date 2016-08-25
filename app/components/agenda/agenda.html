@@ -1,5 +1,8 @@
-<div>
-    <h1>Oi eu sou a pagina de agenda</h1>
-
-    <h3>{{mensagem}}</h3>
+<div ng-init="controller.recuperaContatos()">
+    <md-list ng-repeat="contato in controller.contatos">
+        <md-list-item>
+            <span>{{contato}}</span>
+            <span>{{contato.numeros}}</span>
+        </md-list-item>
+    </md-list>
 </div>

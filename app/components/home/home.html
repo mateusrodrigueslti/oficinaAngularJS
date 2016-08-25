@@ -16,24 +16,28 @@
             <h1 class="md-toolbar-tools">Menu</h1>
         </md-toolbar>
         <md-content layout-margin>
-            <md-list-item>Home</md-list-item>
+            <md-list-item ng-click="controller.vaiParaHome()">Home</md-list-item>
+            <md-list-item ng-click="controller.vaiParaAgenda()">Listar Contatos</md-list-item>
         </md-content>
     </md-sidenav>
     <div>
         <md-input-container>
             <label>Nome</label>
-            <input ng-model="pessoa.nome">
+            <input ng-model="controller.pessoa.nome">
         </md-input-container>
 
         <md-input-container>
             <label>Telefone</label>
-            <input ng-model="pessoa.telefone">
+            <input ng-model="controller.pessoa.telefone">
         </md-input-container>
 
-        <md-button class="md-raised md-primary">Adicionar Contato</md-button>
-        <md-button class="md-raised md-primary" ng-click="controller.vaiParaAgenda()">Ir para contatos</md-button>
+        <md-button class="md-raised md-primary" ng-click="controller.adiciona()">Adicionar Contato</md-button>
+        <md-button class="md-raised md-primary" ng-click="controller.addTelefone()">Add telefone</md-button>
     </div>
-
+    {{controller.telefones}}
+    <div ng-repeat="telefone in controller.telefones">
+        <span>{{telefone}}</span>
+    </div>
     <div>
         <md-input-container>
             <label>Filtro da Tabela</label>

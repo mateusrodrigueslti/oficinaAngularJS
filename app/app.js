@@ -4,7 +4,9 @@
 var app = angular.module("frontEndMean", ['ngMaterial' ,
     'ui.router',
     'home',
-    'agenda'
+    'agenda',
+    'agendaService',
+    'homeService'
     ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
