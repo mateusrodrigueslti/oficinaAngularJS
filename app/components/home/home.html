@@ -1,0 +1,54 @@
+<div>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="controller.abrirMenu()">
+                <md-icon md-svg-icon="assets/img/icons/ic_dehaze_white_36px.svg"></md-icon>
+            </md-button>
+            <h2>
+                <span>Agenda</span>
+            </h2>
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Menu</h1>
+        </md-toolbar>
+        <md-content layout-margin>
+            <md-list-item>Home</md-list-item>
+        </md-content>
+    </md-sidenav>
+    <div>
+        <md-input-container>
+            <label>Nome</label>
+            <input ng-model="pessoa.nome">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Telefone</label>
+            <input ng-model="pessoa.telefone">
+        </md-input-container>
+
+        <md-button class="md-raised md-primary">Adicionar Contato</md-button>
+        <md-button class="md-raised md-primary" ng-click="controller.vaiParaAgenda()">Ir para contatos</md-button>
+    </div>
+
+    <div>
+        <md-input-container>
+            <label>Filtro da Tabela</label>
+            <input ng-model="filtroPesquisa">
+        </md-input-container>
+
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+            <tr ng-repeat="contato in contatos | filter: filtroPesquisa" ng-class="{vermelho: passou}" ng-mouseenter="passou = true" ng-mouseleave="passou = false">
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

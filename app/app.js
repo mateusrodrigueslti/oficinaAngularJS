@@ -7,18 +7,6 @@ var app = angular.module("frontEndMean", ['ngMaterial' ,
     'agenda'
     ]);
 
-app.controller("frontEndMeanController", function ($scope) {
-    $scope.mensagem = 'Ola mundo !';
-    $scope.contatos = [];
-
-    $scope.dataAgora = new Date();
-    $scope.adicionaUm = function () {
-        var pessoaTemp = angular.copy($scope.pessoa);
-        $scope.contatos.push(pessoaTemp);
-        $scope.pessoa = {};
-    }
-});
-
 app.config(function($stateProvider, $urlRouterProvider) {
     //
     // For any unmatched url, redirect to /state1
@@ -28,12 +16,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/home",
-            templateUrl: "home/home.html",
-            controller: "homeController as mateus"
+            templateUrl: "components/home/home.html",
+            controller: "homeController as controller"
         })
         .state('agenda', {
             url: "/agenda",
-            templateUrl: "agenda/agenda.html",
-            controller: "agendaController"
+            templateUrl: "components/agenda/agenda.html",
+            controller: "agendaController as controller"
         })
 });
